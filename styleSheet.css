@@ -1,0 +1,48 @@
+.cup {
+    padding: 20px;
+    height: 400px;
+    width: 300px;
+    border-left: 10px solid black;
+    border-right: 10px solid black;
+    border-bottom: 10px solid black;
+    border-radius: 10px;
+    float: bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding-top: 100px;
+}
+
+.arrow {
+    height: 50px;
+    width: 100px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    font-size: 6vw;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.arrowBox {
+    margin-top: 100px;
+}
+
+.brick {
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+    border-radius: 10px;
+    outline: 2px solid black;
+    cursor: pointer;
+}
+
+.brick:focus {
+    outline: 7px double blue;
+}
