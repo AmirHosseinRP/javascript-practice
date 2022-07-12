@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     arrowBox.append(arrow1, arrow2);
     cup1.after(arrowBox);
 
+    // let deleteBtn = document.createElement('button');
+    // deleteBtn.prepend(root);
+
     let array1;
     array1 = ['blue', 'red', 'yellow', 'green'];
 
@@ -31,21 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
         brick.style.backgroundColor = `${array1[i]}`;
         brick.setAttribute('class', 'brick');
         brick.setAttribute('id', `brick${i}`);
-        brick.setAttribute('tabindex','0')
+        brick.setAttribute('tabindex', '0')
         cup1.append(brick);
     }
     let brick;
-    cup1.addEventListener('click',()=>{
-        brick=document.activeElement;
+    cup1.addEventListener('click', () => {
+        brick = document.activeElement;
     });
-    cup2.addEventListener('click',()=>{
-        brick=document.activeElement;
+    cup2.addEventListener('click', () => {
+        brick = document.activeElement;
     });
-    arrow1.addEventListener('click',()=>{
+    arrow1.addEventListener('click', () => {
         brick.remove();
         cup2.prepend(brick);
     });
-    arrow2.addEventListener('click',()=>{
+    arrow2.addEventListener('click', () => {
         brick.remove();
         cup1.prepend(brick);
     });
