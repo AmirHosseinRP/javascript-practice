@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
          <input type="submit" class="btn btn-primary">`
     addBrick.style.margin = '20px';
     deleteBtn.style.margin = '0 20px 20px 20px';
-    addBrick.setAttribute('onsubmit','return false');
+    addBrick.setAttribute('onsubmit', 'return false');
     panel.append(addBrick);
     panel.append(deleteBtn);
 
