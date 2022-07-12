@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     let root = document.getElementById('root');
+    let panel = document.getElementById('panel')
 
     let cup1 = document.createElement('div');
     cup1.setAttribute('class', 'cup');
@@ -23,11 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
     arrowBox.append(arrow1, arrow2);
     cup1.after(arrowBox);
 
-    // let deleteBtn = document.createElement('button');
-    // deleteBtn.prepend(root);
+    let deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('class', 'btn btn-danger');
+    deleteBtn.innerHTML = 'Delete';
+
+    let addBrick = document.createElement('form');
+    addBrick.innerHTML =
+        `<input type="text" id="brickTitle" style="display: inline-block">
+         <select class="form-select" id="colorSelector" style="width: 150px;display: inline">
+            <option>cyan</option>
+            <option>red</option>
+            <option>yellow</option>
+            <option>green</option>
+         </select>
+         <input type="submit" class="btn btn-primary">`
+    addBrick.style.margin = '20px';
+    deleteBtn.style.margin = '0 20px 20px 20px';
+    panel.append(addBrick);
+    panel.append(deleteBtn);
+
+    let colorSelector = document.getElementById('colorSelector');
+    let brickTitle = document.getElementById('brickTitle');
 
     let array1;
-    array1 = ['blue', 'red', 'yellow', 'green'];
+    array1 = ['cyan', 'red', 'yellow', 'green'];
 
     for (let i in array1) {
         let brick = document.createElement('div');
@@ -38,18 +58,58 @@ document.addEventListener('DOMContentLoaded', () => {
         cup1.append(brick);
     }
     let brick;
+    let isBrickSelected;
     cup1.addEventListener('click', () => {
         brick = document.activeElement;
+        if (brick.getAttribute('class') === 'brick') {
+            isBrickSelected = true;
+            colorSelector.value = brick.style.backgroundColor;
+            brickTitle.value = brick.innerText;
+        }
     });
     cup2.addEventListener('click', () => {
         brick = document.activeElement;
+        if (brick.getAttribute('class') === 'brick') {
+            isBrickSelected = true;
+            colorSelector.value = brick.style.backgroundColor;
+            brickTitle.value = brick.innerText;
+        }
     });
     arrow1.addEventListener('click', () => {
-        brick.remove();
-        cup2.prepend(brick);
+        if (brick.getAttribute('class') === 'brick') {
+            brick.remove();
+            cup2.prepend(brick);
+        }
+        isBrickSelected = false;
     });
     arrow2.addEventListener('click', () => {
-        brick.remove();
-        cup1.prepend(brick);
+        if (brick.getAttribute('class') === 'brick') {
+            brick.remove();
+            cup1.prepend(brick);
+        }
+        isBrickSelected = false;
     });
+    deleteBtn.addEventListener('click', () => {
+        if (brick.getAttribute('class') === 'brick') {
+            brick.remove();
+        }
+        isBrickSelected = false;
+    });
+    addBrick.addEventListener('submit', () => {
+        if (!isBrickSelected) {
+            brick = document.createElement('div');
+            brick.style.backgroundColor = `${colorSelector.value}`;
+            brick.setAttribute('class', 'brick');
+            brick.setAttribute('tabindex', '0')
+            brick.innerHTML = `<h3>${brickTitle.value}</h3>`;
+            cup1.prepend(brick);
+        } else {
+            brick.style.backgroundColor = `${colorSelector.value}`;
+            brick.setAttribute('class', 'brick');
+            brick.setAttribute('tabindex', '0')
+            brick.innerHTML = `<h3>${brickTitle.value}</h3>`;
+        }
+        isBrickSelected = false;
+    });
+
 });

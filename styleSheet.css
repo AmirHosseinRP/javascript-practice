@@ -41,6 +41,10 @@
     border-radius: 10px;
     outline: 2px solid black;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding-top: 9px;
+    color: black;
 }
 
 .brick:focus {
